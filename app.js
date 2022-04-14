@@ -39,23 +39,24 @@ function desEncriptar(txt) {
   var str = ''
   var len = txt.length
   next_char:
-  for (var i = 0; i < len; i++) {
+  for (var i = 0; i < len) {
     for (const entry in kInvReplace) {
-      if ((txt[i] == entry[0]) && empiezaCon(txt, entry, i)) {
+      if ((txt[i] === entry[0]) && empiezaCon(txt, entry, i)) {
         str += kInvReplace[entry]
-        i += entry.length - 1
+        i += entry.length
         continue next_char
       }
     }
-    str += txt[i]
+    str += txt[i++]
   }
   return str
 }
 
 function empiezaCon(a, b, i) {
   for (var j = 0; j < b.length; j++) {
-    if (b[j] !== a[i + j])
+    if (b[j] !== a[i + j]) {
       break
+    }
   }
   return j == b.length
 }

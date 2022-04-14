@@ -38,16 +38,16 @@ function encriptar(txt) {
 function desEncriptar(txt) {
 	var str = ''
 	var len = txt.length
+	next_char:
 	for (var i = 0; i < len; i++) {
 		for (const entry in kInvReplace) {
 			if ((txt[i] == entry[0]) && empiezaCon(txt, entry, i)) {
 				str += kInvReplace[entry]
-				i += entry.length
+				i += entry.length - 1
+				continue next_char
 			}
 		}
-		if (i < len) {
-			str += txt[i]
-		}
+		str += txt[i]
 	}
 	return str
 }

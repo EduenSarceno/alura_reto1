@@ -1,4 +1,12 @@
 ;(function() {
+
+// Area de exportaciones
+window.uiDesencriptar = uiDesencriptar
+window.uiEncriptar = uiEncriptar
+
+const entrada = document.querySelector('#entrada')
+const salida = document.querySelector('#salida')
+
 var kReplace = {
 	'e': 'enter',
 	'i': 'imes',
@@ -52,6 +60,12 @@ function empiezaCon(a, b, i) {
 	return j == b.length
 }
 
-alert(encriptar('gato'))
-alert(desEncriptar('gaitober'))
+function uiDesencriptar(ev) {
+	salida.value = desEncriptar(entrada.value)
+}
+
+function uiEncriptar(ev) {
+	salida.value = encriptar(entrada.value)
+}
+
 }())

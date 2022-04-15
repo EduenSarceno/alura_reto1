@@ -68,7 +68,7 @@ function mostrarResultado() {
   barra.classList.add('con-salida')
 }
 
-function ocultaResultado() {
+function ocultarResultado() {
   barra.classList.remove('con-salida')
 }
 
@@ -97,7 +97,7 @@ function uiDesencriptar() {
   entrada.value = ''
   if (txt.length === 0) {
     salida.textContent = ''
-    ocultaResultado()
+    ocultarResultado()
   } else {
     salida.textContent = desEncriptar(txt)
     mostrarResultado()

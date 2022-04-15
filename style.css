@@ -235,7 +235,63 @@ input.button:focus {
  * 3.2 Tablet
  * =============
  */
+@media only screen and (min-width: 375px) {
+  .d-sm-flex {
+    display:  flex;
+  }
+
+  .flex-sm-column {
+    flex-direction: column;
+  }
+
+  .flex-sm-row {
+    flex-direction: row;
+  }
+
+  .flex-sm-grow {
+    flex-grow: 1;
+  }
+
+  input.button {
+    border-radius: 1rem;
+    margin: 0px 1rem;
+  }
+
+}
 /* ==============
  * 3.3 Desktop
  * ==============
  */
+@media only screen and (min-width: 768px) {
+  .d-md-flex {
+    display:  flex;
+  }
+
+  .d-md-block {
+    display: block;
+  }
+
+  .flex-md-column {
+    flex-direction: column;
+  }
+
+  .flex-md-row {
+    flex-direction: row;
+  }
+
+  .flex-md-grow {
+    flex-grow: 1;
+  }
+
+  .principal {
+    width: 70%;
+  }
+
+  .barra-lateral {
+    width: 30%;
+  }
+
+  body {
+    height: 100vh;
+  }
+}

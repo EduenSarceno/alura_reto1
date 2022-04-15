@@ -3,7 +3,7 @@ const entrada = document.querySelector('#entrada')
 const salida = document.querySelector('#salida')
 const info = document.querySelector('.barra-lateral .info')
 
-// Area de exportaciones
+// exportaciones
 window.uiDesencriptar = uiDesencriptar
 window.uiEncriptar = uiEncriptar
 entrada.oninput = uiSoloLetras
@@ -70,28 +70,23 @@ function mostrarInfo() {
   info.style.display = 'block'
 }
 
-const kAllowedChars = 'a-z '
-const kAllowed = new RegExp(`[${kAllowedChars}]`, 'g')
-const kUnAllowed = new RegExp(`[^${kAllowedChars}]`, 'g')
-
+const kUnAllowed = /[^a-z ]/
 function uiSoloLetras(ev) {
-  const { inputType, target } = ev
-  var data = ev.data
-  if (inputType === 'deleteContentBackward') {
-    return
-  } else if (inputType === 'insertFromPaste') {
-    data = data.toLowerCase()
-    data = data.replace(kUnAllowed, '')
-    target.value = data
-    if (data !== ev.data) {
-      alert('se ha modificado el texto para coincidir con los carácteres permitidos')
-    }
-    return
-  } else if (inputType === 'insertText') {
-    if (!kAllowed.test(data)) {
+  const { inputType, target, data } = ev
+  // caso más frecuente
+  if (inputType === 'insertText') {
+    kUnAllowed.lastIndex = 0
+    console.log(data)
+    if (kUnAllowed.test(data)) {
       let value = target.value
       target.value = value.substring(0, value.length - 1)
       alert('solo letras minúsculas y sin acentos')
+    }
+  } else if(inputType === 'insertFromPaste') {
+    let value = target.value
+    target.value = value.replace(kUnAllowed, '')
+    if (target.value !== value) {
+      alert('se ha modificado el texto para coincidir con los carácteres permitidos')
     }
   }
 }

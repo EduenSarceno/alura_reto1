@@ -1,7 +1,7 @@
 ;(function() {
 const entrada = document.querySelector('#entrada')
 const salida = document.querySelector('#salida')
-const info = document.querySelector('.barra-lateral .info')
+const info = document.querySelector('.info')
 
 // exportaciones
 window.uiDesencriptar = uiDesencriptar
@@ -67,7 +67,7 @@ function ocultarInfo() {
 }
 
 function mostrarInfo() {
-  info.style.display = 'block'
+  info.style.display = 'flex'
 }
 
 const kUnAllowed = /[^a-z ]/

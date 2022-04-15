@@ -95,10 +95,10 @@ function uiDesencriptar() {
   if (txt.length === 0) {
     salida.textContent = ''
     mostrarInfo()
-    return
+  } else {
+    salida.textContent = desEncriptar(entrada.value)
+    ocultarInfo()
   }
-  salida.textContent = desEncriptar(entrada.value)
-  ocultarInfo()
 }
 
 function uiEncriptar() {
@@ -106,10 +106,10 @@ function uiEncriptar() {
   if (txt.length === 0) {
     salida.textContent = ''
     mostrarInfo()
-    return
+  } else {
+    salida.textContent = encriptar(entrada.value)
+    ocultarInfo()
   }
-  salida.textContent = encriptar(entrada.value)
-  ocultarInfo()
 }
 
 }())

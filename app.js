@@ -76,7 +76,6 @@ function uiSoloLetras(ev) {
   // caso más frecuente
   if (inputType === 'insertText') {
     kUnAllowed.lastIndex = 0
-    console.log(data)
     if (kUnAllowed.test(data)) {
       let value = target.value
       target.value = value.substring(0, value.length - 1)

@@ -184,7 +184,8 @@ input.button:focus {
 }
 
 .my-auto {
-  margin: auto 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .info {
@@ -204,6 +205,32 @@ input.button:focus {
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.barra-lateral {
+  position: relative;
+}
+
+.barra-lateral .button {
+  position: absolute;
+  visibility: hidden;
+  top: 0.5rem;
+  right: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.barra-lateral.con-salida .button {
+  visibility: visible;
+}
+
+.barra-lateral.con-salida .info {
+  display:  none;
+}
+
+#salida {
+  font-size: 1.5rem;
+}
+
 /* =============
  * 3.2 Tablet
  * =============

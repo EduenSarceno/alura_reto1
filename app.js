@@ -1,11 +1,12 @@
 ;(function() {
+const entrada = document.querySelector('#entrada')
+const salida = document.querySelector('#salida')
+const info = document.querySelector('.barra-lateral .info')
 
 // Area de exportaciones
 window.uiDesencriptar = uiDesencriptar
 window.uiEncriptar = uiEncriptar
-
-const entrada = document.querySelector('#entrada')
-const salida = document.querySelector('#salida')
+entrada.oninput = uiSoloLetras
 
 var kReplace = {
   'e': 'enter',
@@ -61,12 +62,60 @@ function empiezaCon(a, b, i) {
   return j == b.length
 }
 
-function uiDesencriptar(ev) {
-  salida.value = desEncriptar(entrada.value)
+function ocultarInfo() {
+  info.style.display = 'none'
 }
 
-function uiEncriptar(ev) {
-  salida.value = encriptar(entrada.value)
+function mostrarInfo() {
+  info.style.display = 'block'
+}
+
+const kAllowedChars = 'a-z '
+const kAllowed = new RegExp(`[${kAllowedChars}]`, 'g')
+const kUnAllowed = new RegExp(`[^${kAllowedChars}]`, 'g')
+
+function uiSoloLetras(ev) {
+  const { inputType, target } = ev
+  var data = ev.data
+  if (inputType === 'deleteContentBackward') {
+    return
+  } else if (inputType === 'insertFromPaste') {
+    data = data.toLowerCase()
+    data = data.replace(kUnAllowed, '')
+    target.value = data
+    if (data !== ev.data) {
+      alert('se ha modificado el texto para coincidir con los carácteres permitidos')
+    }
+    return
+  } else if (inputType === 'insertText') {
+    if (!kAllowed.test(data)) {
+      let value = target.value
+      target.value = value.substring(0, value.length - 1)
+      alert('solo letras minúsculas y sin acentos')
+    }
+  }
+}
+
+function uiDesencriptar() {
+  var txt = entrada.value
+  if (txt.length === 0) {
+    salida.textContent = ''
+    mostrarInfo()
+    return
+  }
+  salida.textContent = desEncriptar(entrada.value)
+  ocultarInfo()
+}
+
+function uiEncriptar() {
+  var txt = entrada.value
+  if (txt.length === 0) {
+    salida.textContent = ''
+    mostrarInfo()
+    return
+  }
+  salida.textContent = encriptar(entrada.value)
+  ocultarInfo()
 }
 
 }())

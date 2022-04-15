@@ -1,0 +1,206 @@
+/*
+ * ========== TABLA DE CONTENIDO ======
+ * 1. Reset
+ * 2. Base
+ * 3. Breakpoints
+ *   3.1. Celular
+ *   3.2. Tablet
+ *   3.3. Desktop
+ */
+
+/* ===========
+ * 1. Reset
+ * ===========
+ * Reglas para eliminar la mayoría de estilos
+ * del navegador
+ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+textarea,
+textarea:hover,
+textarea:focus,
+input[type="button"],
+input[type="button"]:hover,
+input[type="button"]:focus {
+  background: inherit;
+  border:  none;
+  color:  inherit;
+  font: inherit;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+/* ==========
+ * 2. Base
+ * ==========
+ */
+@font-face {
+  font-family:  'Inter';
+  src: url('./fonts/Inter-Light.ttf')
+  font-weight: normal;
+}
+
+@font-face {
+  font-family:  'Inter';
+  src: url('./fonts/Inter-Bold.ttf')
+  font-weight: bold;
+}
+
+html {
+  font-family:  'Inter', sans-serif;
+}
+
+body {
+  background-color: #f3f5fc;
+}
+
+/* =================
+ * 3. Breakpoints
+ * =================
+ * Los breakpoints sirven para cambiar el diseño
+ * de la página en puntos claves
+ */
+/* ==============
+ * 3.1 Celular
+ * ==============
+ */
+.principal {
+  min-height: 75vh;
+}
+
+.logo {
+  height: 3rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+#entrada {
+  text-align: center;
+  font-size: 2rem;
+  max-width: 100%;
+  margin: 2rem;
+  color: #0a3871;
+}
+
+.controles {
+  padding: 1.5rem;
+}
+
+header {
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+}
+
+.advertencia {
+  height: 2rem;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-info {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  background: url('./img/exclamation.png');
+  margin: 0px 0.5rem;
+}
+
+input.button {
+  color: #0A3871;
+  border: solid 1px #0A3871;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  margin: 0.5rem 0px;
+  cursor: pointer;
+}
+
+input.button:hover,
+input.button:focus {
+  background-color: #0A3871;
+  color: white;
+  border: solid 1px #000;
+}
+
+.barra-lateral {
+  background-color: #fff;
+  border: solid 1px #ddd;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  min-height: calc(25vh - 2rem);
+  color: #495057;
+}
+
+.my-auto {
+  margin: auto 0;
+}
+
+.info-txt strong{
+  color: #343A40;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+/* =============
+ * 3.2 Tablet
+ * =============
+ */
+/* ==============
+ * 3.3 Desktop
+ * ==============
+ */

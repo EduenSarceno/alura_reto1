@@ -137,6 +137,10 @@ body {
   color: #0a3871;
 }
 
+::placeholder {
+  color: #7387a4;
+}
+
 .controles {
   padding: 1.5rem;
 }
@@ -153,14 +157,6 @@ header {
   align-items: center;
 }
 
-.icon-info {
-  width: 1rem;
-  height: 1rem;
-  display: inline-block;
-  background: url('./img/exclamation.png');
-  margin: 0px 0.5rem;
-}
-
 input.button {
   color: #0A3871;
   border: solid 1px #0A3871;
@@ -173,7 +169,7 @@ input.button {
 input.button:hover,
 input.button:focus {
   background-color: #0A3871;
-  color: white;
+  color: #fff;
   border: solid 1px #000;
 }
 
@@ -188,7 +184,20 @@ input.button:focus {
 }
 
 .my-auto {
-  margin: auto 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.info {
+  text-align: center;
+}
+
+.icon-info {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  background: url('./img/exclamation.png');
+  margin: 0px 0.5rem;
 }
 
 .info-txt strong{
@@ -196,6 +205,32 @@ input.button:focus {
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.barra-lateral {
+  position: relative;
+}
+
+.barra-lateral .button {
+  position: absolute;
+  visibility: hidden;
+  top: 0.5rem;
+  right: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.barra-lateral.con-salida .button {
+  visibility: visible;
+}
+
+.barra-lateral.con-salida .info {
+  display:  none;
+}
+
+#salida {
+  font-size: 1.5rem;
+}
+
 /* =============
  * 3.2 Tablet
  * =============

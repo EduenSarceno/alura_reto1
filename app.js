@@ -1,11 +1,13 @@
 ;(function() {
 const entrada = document.querySelector('#entrada')
 const salida = document.querySelector('#salida')
-const info = document.querySelector('.barra-lateral .info')
+const barra = document.querySelector('.barra-lateral')
 
 // exportaciones
 window.uiDesencriptar = uiDesencriptar
 window.uiEncriptar = uiEncriptar
+window.uiCopiar = uiCopiar
+
 entrada.oninput = uiSoloLetras
 
 var kReplace = {
@@ -62,12 +64,12 @@ function empiezaCon(a, b, i) {
   return j == b.length
 }
 
-function ocultarInfo() {
-  info.style.display = 'none'
+function mostrarResultado() {
+  barra.classList.add('con-salida')
 }
 
-function mostrarInfo() {
-  info.style.display = 'block'
+function ocultaResultado() {
+  barra.classList.remove('con-salida')
 }
 
 const kUnAllowed = /[^a-z ]/
@@ -76,7 +78,6 @@ function uiSoloLetras(ev) {
   // caso más frecuente
   if (inputType === 'insertText') {
     kUnAllowed.lastIndex = 0
-    console.log(data)
     if (kUnAllowed.test(data)) {
       let value = target.value
       target.value = value.substring(0, value.length - 1)
@@ -93,24 +94,35 @@ function uiSoloLetras(ev) {
 
 function uiDesencriptar() {
   var txt = entrada.value
+  entrada.value = ''
   if (txt.length === 0) {
     salida.textContent = ''
-    mostrarInfo()
-    return
+    ocultaResultado()
+  } else {
+    salida.textContent = desEncriptar(txt)
+    mostrarResultado()
   }
-  salida.textContent = desEncriptar(entrada.value)
-  ocultarInfo()
+
 }
 
 function uiEncriptar() {
   var txt = entrada.value
+  entrada.value = ''
   if (txt.length === 0) {
     salida.textContent = ''
-    mostrarInfo()
-    return
+    ocultarResultado()
+  } else {
+    salida.textContent = encriptar(txt)
+    mostrarResultado()
   }
-  salida.textContent = encriptar(entrada.value)
-  ocultarInfo()
+}
+
+const kClipboard = navigator.clipboard
+function uiCopiar() {
+  if (kClipboard) {
+    kClipboard.writeText(salida.textContent)
+    alert('copiado')
+  }
 }
 
 }())

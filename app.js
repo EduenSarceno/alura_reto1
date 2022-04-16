@@ -72,7 +72,7 @@ function ocultarResultado() {
   barra.classList.remove('con-salida')
 }
 
-const kUnAllowed = /[^a-z ]/
+const kUnAllowed = /[^a-z ]/g
 function uiSoloLetras(ev) {
   const { inputType, target, data } = ev
   // caso más frecuente
@@ -84,7 +84,9 @@ function uiSoloLetras(ev) {
       alert('solo letras minúsculas y sin acentos')
     }
   } else if(inputType === 'insertFromPaste') {
-    let value = target.value
+    let value = data || target.value || ''
+    value = value.toLowerCase()
+    console.log(value)
     target.value = value.replace(kUnAllowed, '')
     if (target.value !== value) {
       alert('se ha modificado el texto para coincidir con los carácteres permitidos')

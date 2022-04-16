@@ -229,6 +229,8 @@ input.button:focus {
 
 #salida {
   font-size: 1.5rem;
+  max-width: 100%;
+  word-break: break-all;
 }
 
 /* =============

@@ -86,7 +86,6 @@ function uiSoloLetras(ev) {
   } else if(inputType === 'insertFromPaste') {
     let value = data || target.value || ''
     value = value.toLowerCase()
-    console.log(value)
     target.value = value.replace(kUnAllowed, '')
     if (target.value !== value) {
       alert('se ha modificado el texto para coincidir con los carácteres permitidos')

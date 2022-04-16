@@ -133,8 +133,9 @@ function uiEncriptar() {
 const kClipboard = navigator.clipboard
 function uiCopiar() {
   if (kClipboard) {
-    kClipboard.writeText(salida.nodeValue)
-    alert('copiado')
+    kClipboard
+      .writeText(salida.nodeValue)
+      .then(() => alert('copiado'))
   }
 }
 

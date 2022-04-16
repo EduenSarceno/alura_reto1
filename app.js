@@ -1,7 +1,19 @@
 ;(function() {
 const entrada = document.querySelector('#entrada')
-const salida = document.querySelector('#salida')
 const barra = document.querySelector('.barra-lateral')
+
+var salida
+function crearSalida() {
+  const elem = document.querySelector('#salida')
+  const child = document.createTextNode('')
+
+  elem.innerHTML = '' //para borrar todo los childNodes
+  elem.appendChild(child) //para hacer del textNode el único hijo
+  // trabajamos la salida como textNode para evitar basura
+  // al hacer node.textContent (además de que node.value es más rápido)
+  salida = child
+}
+crearSalida()
 
 // exportaciones
 window.uiDesencriptar = uiDesencriptar
@@ -97,10 +109,10 @@ function uiDesencriptar() {
   var txt = entrada.value
   entrada.value = ''
   if (txt.length === 0) {
-    salida.textContent = ''
+    salida.nodeValue = ''
     ocultarResultado()
   } else {
-    salida.textContent = desEncriptar(txt)
+    salida.nodeValue = desEncriptar(txt)
     mostrarResultado()
   }
 
@@ -110,10 +122,10 @@ function uiEncriptar() {
   var txt = entrada.value
   entrada.value = ''
   if (txt.length === 0) {
-    salida.textContent = ''
+    salida.nodeValue = ''
     ocultarResultado()
   } else {
-    salida.textContent = encriptar(txt)
+    salida.nodeValue = encriptar(txt)
     mostrarResultado()
   }
 }
@@ -121,7 +133,7 @@ function uiEncriptar() {
 const kClipboard = navigator.clipboard
 function uiCopiar() {
   if (kClipboard) {
-    kClipboard.writeText(salida.textContent)
+    kClipboard.writeText(salida.nodeValue)
     alert('copiado')
   }
 }

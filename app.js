@@ -16,64 +16,64 @@ function crearSalida() {
 crearSalida()
 
 // exportaciones
-window.uiDesencriptar = uiDesencriptar
-window.uiEncriptar = uiEncriptar
+window.uiCodificar = uiCodificar
+window.uiDecodificar = uiDecodificar
 window.uiCopiar = uiCopiar
 
 entrada.oninput = uiSoloLetras
 
-var kReplace = {
-  'e': 'enter',
-  'i': 'imes',
-  'a': 'ai',
-  'o': 'ober',
-  'u': 'ufat'
-}
-
-var kInvReplace = {}
-function crearInvReplace() {
-  for (const entry in kReplace) {
-    kInvReplace[kReplace[entry]] = entry
+function Cod(x) {
+  switch(x) {
+  case 'e': return 'enter'
+  case 'i': return 'imes'
+  case 'a': return 'ai'
+  case 'o': return 'ober'
+  case 'u': return 'ufat'
+  default : return x
   }
 }
-crearInvReplace()
 
-function encriptar(txt) {
-  var str = ''
-  for (const char of txt) {
-    if (kReplace[char]) {
-      str += kReplace[char]
-    } else {
-      str += char
+function codificar(s) {
+  var r = ''
+  for (const c of s) {
+      r += Cod(c)
+  }
+  return r
+}
+
+function error() {
+  throw new SyntaxError('codificación inválida')
+}
+
+function decodificar(s) {
+  var r = ''
+  for (var j = 0; j < s.length;) {
+    switch(s[j]) {
+      case 'e':
+        if (s[j + 4] === 'r') { r += s[j]; j += 5 }
+        else { error() }
+        break
+      case 'i':
+        if (s[j + 3] === 's') { r += s[j]; j += 4 }
+        else { error() }
+        break
+      case 'a':
+        if (s[j + 1] === 'i') { r += s[j]; j += 2 }
+        else { error()}
+        break
+      case 'o':
+        if (s[j + 3] === 'r') { r += s[j]; j += 4 }
+        else { error() }
+        break
+      case 'u':
+        if (s[j + 3] === 't') { r += s[j]; j += 4 }
+        else { error() }
+        break
+      default:
+        r += s[j++]
     }
   }
-  return str
-}
-
-function desEncriptar(txt) {
-  var str = ''
-  var len = txt.length
-  next_char:
-  for (var i = 0; i < len;) {
-    for (const entry in kInvReplace) {
-      if ((txt[i] === entry[0]) && empiezaCon(txt, entry, i)) {
-        str += kInvReplace[entry]
-        i += entry.length
-        continue next_char
-      }
-    }
-    str += txt[i++]
-  }
-  return str
-}
-
-function empiezaCon(a, b, i) {
-  for (var j = 0; j < b.length; j++) {
-    if (b[j] !== a[i + j]) {
-      break
-    }
-  }
-  return j == b.length
+  return r
 }
 
 function mostrarResultado() {
@@ -105,27 +105,31 @@ function uiSoloLetras(ev) {
   }
 }
 
-function uiDesencriptar() {
+function uiDecodificar() {
   var txt = entrada.value
   entrada.value = ''
   if (txt.length === 0) {
     salida.nodeValue = ''
     ocultarResultado()
   } else {
-    salida.nodeValue = desEncriptar(txt)
+    try {
+      salida.nodeValue = decodificar(txt)
+    } catch(O_o) {
+      salida.nodeValue = 'Error: no se pudo decodificar la cadena, porque no es una codificación válida'
+    }
     mostrarResultado()
   }
 
 }
 
-function uiEncriptar() {
+function uiCodificar() {
   var txt = entrada.value
   entrada.value = ''
   if (txt.length === 0) {
     salida.nodeValue = ''
     ocultarResultado()
   } else {
-    salida.nodeValue = encriptar(txt)
+    salida.nodeValue = codificar(txt)
     mostrarResultado()
   }
 }
